@@ -1,0 +1,91 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Admin API",
+        "description": "API for managing admin users",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api"
+        }
+    ],
+    "paths": {
+        "/api/admins/register": {
+            "post": {
+                "tags": [
+                    "Admins"
+                ],
+                "summary": "Register a new admin",
+                "description": "Store a newly created admin in storage.",
+                "operationId": "0a58442329ef9137568672ba0cbfd2e2",
+                "parameters": [
+                    {
+                        "name": "name_admin",
+                        "in": "formData",
+                        "description": "Admin name",
+                        "required": true
+                    },
+                    {
+                        "name": "email_admin",
+                        "in": "formData",
+                        "description": "Admin email",
+                        "required": true
+                    },
+                    {
+                        "name": "numero_de_telephone",
+                        "in": "formData",
+                        "description": "Admin phone number",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Admin password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin registered successfully"
+                    },
+                    "500": {
+                        "description": "Error registering admin"
+                    }
+                }
+            }
+        },
+        "/api/admins/login": {
+            "post": {
+                "tags": [
+                    "Admins"
+                ],
+                "summary": "Login as an admin",
+                "description": "Login admin and return a token.",
+                "operationId": "f93247e015d7226ed14461b30cc3eb7c",
+                "parameters": [
+                    {
+                        "name": "email_admin",
+                        "in": "formData",
+                        "description": "Admin email",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Admin password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful login"
+                    },
+                    "401": {
+                        "description": "Invalid email or password"
+                    }
+                }
+            }
+        }
+    }
+}
