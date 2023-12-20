@@ -1,0 +1,144 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Admin API",
+        "description": "API for managing admin users",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api"
+        }
+    ],
+    "paths": {
+        "/api/candidatures": {
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Create a new candidature",
+                "operationId": "1534a5ecf6eb6da20875b013ed7ff9c5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CandidatureRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Candidature created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CandidatureResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User has already applied to this formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "status_message": {
+                                            "type": "string",
+                                            "example": "L'utilisateur a déjà candidaté à cette formation."
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error creating candidature"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/liste-accept": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Get a list of accepted candidatures",
+                "operationId": "790cac905567275d4b61466d3572b452",
+                "responses": {
+                    "200": {
+                        "description": "List of accepted candidatures"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/liste-decline": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Get a list of declined candidatures",
+                "operationId": "bad0fe485b92e70f9fe01828962da53a",
+                "responses": {
+                    "200": {
+                        "description": "List of declined candidatures"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/accept/{candidature}": {
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Accept a candidature",
+                "operationId": "bd248dd56e1f3e223385998f96aa2e5c",
+                "parameters": [
+                    {
+                        "name": "candidature",
+                        "in": "path",
+                        "description": "ID of the candidature to accept",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature accepted successfully"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/decline/{candidature}": {
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Decline a candidature",
+                "operationId": "fab8d5eefc8da6abcb376c454d783717",
+                "parameters": [
+                    {
+                        "name": "candidature",
+                        "in": "path",
+                        "description": "ID of the candidature to decline",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature declined successfully"
+                    }
+                }
+            }
+        }
+    }
+}

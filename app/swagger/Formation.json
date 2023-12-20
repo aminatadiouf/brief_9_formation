@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Admin API",
+        "description": "API for managing admin users",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api"
+        }
+    ],
+    "paths": {
+        "/api/formations": {
+            "get": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Get a listing of candidatures",
+                "description": "Display a listing of the candidatures.",
+                "operationId": "5e9ba5829719dbaecae7703885f2ee57",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/formations/formationdiff": {
+            "get": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Get a listing of all formations",
+                "description": "Get a listing of all formations.",
+                "operationId": "b8c0497aabc85daaf05e252cac6f51b7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/formations/store": {
+            "post": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Store a new formation",
+                "description": "Store a newly created formation in storage.",
+                "operationId": "c4bbc8b21c71c20b08324ef92785daf4",
+                "parameters": [
+                    {
+                        "name": "nom_de_formation",
+                        "in": "formData",
+                        "description": "Nom de la formation",
+                        "required": true
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description de la formation",
+                        "required": true
+                    },
+                    {
+                        "name": "date_de_debut",
+                        "in": "formData",
+                        "description": "Date de début de la formation (YYYY-MM-DD)",
+                        "required": true
+                    },
+                    {
+                        "name": "date_limite_d_inscription",
+                        "in": "formData",
+                        "description": "Date limite d'inscription à la formation (YYYY-MM-DD)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formation added successfully"
+                    },
+                    "500": {
+                        "description": "Error adding formation"
+                    }
+                }
+            }
+        },
+        "/api/formations/{formation}": {
+            "put": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Update a formation",
+                "description": "Update the specified formation in storage.",
+                "operationId": "4987843cc6aead0d2ae16d3fc45a1159",
+                "parameters": [
+                    {
+                        "name": "formation",
+                        "in": "path",
+                        "description": "ID of the formation to be updated",
+                        "required": true
+                    },
+                    {
+                        "name": "nom_de_formation",
+                        "in": "formData",
+                        "description": "New name of the formation",
+                        "required": true
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "New description of the formation",
+                        "required": true
+                    },
+                    {
+                        "name": "date_de_debut",
+                        "in": "formData",
+                        "description": "New date de début of the formation (YYYY-MM-DD)",
+                        "required": true
+                    },
+                    {
+                        "name": "date_limite_d_inscription",
+                        "in": "formData",
+                        "description": "New date limite d'inscription of the formation (YYYY-MM-DD)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formation updated successfully"
+                    },
+                    "404": {
+                        "description": "Formation not found"
+                    },
+                    "500": {
+                        "description": "Error updating formation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Formations"
+                ],
+                "summary": "Remove a formation",
+                "description": "Remove the specified formation from storage.",
+                "operationId": "bce36e0af08c4d7ac6eacf7948af890d",
+                "parameters": [
+                    {
+                        "name": "formation",
+                        "in": "path",
+                        "description": "ID of the formation to be removed",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formation removed successfully"
+                    },
+                    "404": {
+                        "description": "Formation not found"
+                    },
+                    "500": {
+                        "description": "Error removing formation"
+                    }
+                }
+            }
+        }
+    }
+}
